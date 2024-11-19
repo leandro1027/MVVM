@@ -1,13 +1,16 @@
-package com.example.mvvm
+package com.example.mvvm.view
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.example.mvvm.viewModel.MainViewModel
+import com.example.mvvm.R
 import com.example.mvvm.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
@@ -50,6 +53,13 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         viewModel.getWelcome().observe(this, Observer() {
             binding.textWelcome.text = it
         })
-    }
 
+        viewModel.getLogin().observe(this, Observer() {
+            if (it){
+                Toast.makeText(this, "Sucesso", Toast.LENGTH_SHORT).show()
+            }else{
+                Toast.makeText(this, "Falhou", Toast.LENGTH_SHORT).show()
+            }
+        })
+    }
 }
