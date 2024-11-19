@@ -1,5 +1,6 @@
 package com.example.mvvm.view
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
@@ -56,9 +57,9 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
         viewModel.getLogin().observe(this, Observer() {
             if (it){
-                Toast.makeText(this, "Sucesso", Toast.LENGTH_SHORT).show()
+             startActivity(Intent(this,UserActivity::class.java))
             }else{
-                Toast.makeText(this, "Falhou", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "E-mail ou senha incorretos", Toast.LENGTH_SHORT).show()
             }
         })
     }
